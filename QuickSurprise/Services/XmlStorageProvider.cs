@@ -15,20 +15,33 @@ namespace QuickSurprise.Services
 
         public List<Person> GetAll()
         {
-            if (!File.Exists(_filePath)) return new List<Person>();
+            if (!File.Exists(_filePath))
+                return new List<Person>();
 
             var xdoc = XDocument.Load(_filePath);
-            return xdoc.Root?
-                .Elements("person")
-                .Select(x => new Person
+            var root = xdoc.Root;
+
+            if (root == null)
+                return new List<Person>();
+
+            var persons = new List<Person>();
+
+            foreach (var x in root.Elements("person"))
+            {
+                var person = new Person
                 {
                     Id = (int)x.Element("id"),
                     Firstname = (string)x.Element("firstname"),
                     Lastname = (string)x.Element("lastname"),
                     Age = (int)x.Element("age")
-                })
-                .ToList() ?? new List<Person>();
+                };
+
+                persons.Add(person);
+            }
+
+            return persons;
         }
+
 
         public Person? GetById(int id)
         {
@@ -45,11 +58,17 @@ namespace QuickSurprise.Services
         public void Update(Person updatedPerson)
         {
             var persons = GetAll();
-            var index = persons.FindIndex(p => p.Id == updatedPerson.Id);
-            if (index != -1)
+            foreach (var person in persons)
             {
-                persons[index] = updatedPerson;
-                SaveToFile(persons);
+                if (person.Id == updatedPerson.Id)
+                {
+                    person.Firstname = updatedPerson.Firstname;
+                    person.Lastname = updatedPerson.Lastname;
+                    person.Age = updatedPerson.Age;
+
+                    SaveToFile(persons);
+                    break;
+                }
             }
         }
 
