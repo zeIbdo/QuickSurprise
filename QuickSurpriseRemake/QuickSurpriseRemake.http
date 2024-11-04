@@ -1,0 +1,6 @@
+@QuickSurpriseRemake_HostAddress = http://localhost:5229
+
+GET {{QuickSurpriseRemake_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

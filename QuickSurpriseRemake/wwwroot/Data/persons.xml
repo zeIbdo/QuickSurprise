@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPerson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Person>
+    <Id>0</Id>
+    <FirstName>string</FirstName>
+    <LastName>string</LastName>
+    <Age>0</Age>
+  </Person>
+  <Person>
+    <Id>1</Id>
+    <FirstName>string</FirstName>
+    <LastName>string</LastName>
+    <Age>33333</Age>
+  </Person>
+</ArrayOfPerson>

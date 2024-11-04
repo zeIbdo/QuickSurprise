@@ -1,6 +1,0 @@
-@QuickSurprise_HostAddress = http://localhost:5226
-
-GET {{QuickSurprise_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
